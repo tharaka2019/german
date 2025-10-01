@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Brueckesl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-container {
+            max-width: 1400px;
+            margin: -4rem auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(102,126,234,0.3);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            width: 90px;
+            height: 90px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-title h3 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-badge {
+            display: inline-block;
+            background: #FFD700;
+            color: #333;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .service-description {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #666;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+
+        .service-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .service-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+        }
+
+        /* Pricing Info Section */
+        .pricing-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-container h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            margin-top: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .pricing-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .factor-card {
+            text-align: center;
+        }
+
+        .factor-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .factor-card h4 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .factor-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Express Service Section */
+        .express-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .express-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .express-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .express-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .express-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .express-feature {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .express-feature h4 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">Brueckesl</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Our Translation Services</h1>
+        <p>Professional, certified translations for all your needs - from legal documents to academic certificates</p>
+    </section>
+
+    <section class="services-container">
+        <div class="services-grid">
+            <!-- Certified Translations -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">📜</div>
+                    <div class="service-title">
+                        <h3>Certified Translations</h3>
+                        <span class="service-badge">Most Popular</span>
+                    </div>
+                </div>
+                <p class="service-description">Official certified translations recognized nationwide in Germany. Perfect for administrative bodies, courts, and government institutions.</p>
+                <ul class="service-features">
+                    <li><span class="check-icon">✓</span> Sworn translator certification</li>
+                    <li><span class="check-icon">✓</span> Nationwide recognition</li>
+                    <li><span class="check-icon">✓</span> Official stamp & signature</li>
+                    <li><span class="check-icon">✓</span> Court-approved format</li>
+                    <li><span class="check-icon">✓</span> Digital + postal delivery</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Request Quote</a>
+            </div>
+
+            <!-- Legal Documents -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">⚖️</div>
+                    <div class="service-title">
+                        <h3>Legal Documents</h3>
+                    </div>
+                </div>
+                <p class="service-description">Specialized translations for legal documents, contracts, court proceedings, and official communications with guaranteed accuracy.</p>
+                <ul class="service-features">
+                    <li><span class="check-icon">✓</span> Contracts & agreements</li>
+                    <li><span class="check-icon">✓</span> Court documents</li>
+                    <li><span class="check-icon">✓</span> Notarial deeds</li>
+                    <li><span class="check-icon">✓</span> Power of attorney</li>
+                    <li><span class="check-icon">✓</span> Legal correspondence</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Request Quote</a>
+            </div>
+
+            <!-- Medical Translations -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🏥</div>
+                    <div class="service-title">
+                        <h3>Medical Translations</h3>
+                    </div>
+                </div>
+                <p class="service-description">Professional translation of medical records, prescriptions, reports, and healthcare documents with technical precision and confidentiality.</p>
+                <ul class="service-features">
+                    <li><span class="check-icon">✓</span> Medical records</li>
+                    <li><span class="check-icon">✓</span> Prescriptions</li>
+                    <li><span class="check-icon">✓</span> Lab reports</li>
+                    <li><span class="check-icon">✓</span> Hospital documents</li>
+                    <li><span class="check-icon">✓</span> Health certificates</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Request Quote</a>
+            </div>
+
+            <!-- Academic Documents -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🎓</div>
+                    <div class="service-title">
+                        <h3>Academic Documents</h3>
+                        <span class="service-badge">Student Favorite</span>
+                    </div>
+                </div>
+                <p class="service-description">Translation of diplomas, transcripts, certificates, and educational records for university applications, job applications, or visa purposes.</p>
+                <ul class="service-features">
+                    <li><span class="check-icon">✓</span> Diplomas & degrees</li>
+                    <li><span class="check-icon">✓</span> Transcripts</li>
+                    <li><span class="check-icon">✓</span> Certificates</li>
+                    <li><span class="check-icon">✓</span> Academic references</li>
+                    <li><span class="check-icon">✓</span> School records</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Request Quote</a>
+            </div>
+
+            <!-- Technical Translations -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🔧</div>
+                    <div class="service-title">
+                        <h3>Technical Translations</h3>
+                    </div>
+                </div>
+                <p class="service-description">Specialized translations for technical documents, user manuals, specifications, and industry-specific content across various fields.</p>
+                <ul class="service-features">
+                    <li><span class="check-icon">✓</span> Technical manuals</li>
+                    <li><span class="check-icon">✓</span> Product specifications</li>
+                    <li><span class="check-icon">✓</span> Engineering documents</li>
+                    <li><span class="check-icon">✓</span> IT documentation</li>
+                    <li><span class="check-icon">✓</span> Industry reports</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Request Quote</a>
+            </div>
+
+            <!-- Personal Documents -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">👤</div>
+                    <div class="service-title">
+                        <h3>Personal Documents</h3>
+                    </div>
+                </div>
+                <p class="service-description">Translation of personal documents including birth certificates, marriage certificates, driver's licenses, and identification documents.</p>
+                <ul class="service-features">
+                    <li><span class="check-icon">✓</span> Birth certificates</li>
+                    <li><span class="check-icon">✓</span> Marriage certificates</li>
+                    <li><span class="check-icon">✓</span> Driver's licenses</li>
+                    <li><span class="check-icon">✓</span> Passports & IDs</li>
+                    <li><span class="check-icon">✓</span> Family records</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Request Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="pricing-container">
+            <h2>Transparent Pricing</h2>
+            <p style="color: #666; font-size: 1.2rem; margin-bottom: 2rem;">Our prices are tailored to your specific needs</p>
+            <div class="pricing-info">
+                <p style="font-size: 1.2rem; color: #555; margin-bottom: 2rem;">The cost of translation depends on several factors. Contact us for a personalized quote!</p>
+                <div class="pricing-factors">
+                    <div class="factor-card">
+                        <div class="factor-icon">📄</div>
+                        <h4>Document Type</h4>
+                        <p>Legal, medical, academic, or technical documents</p>
+                    </div>
+                    <div class="factor-card">
+                        <div class="factor-icon">📏</div>
+                        <h4>Length</h4>
+                        <p>Number of pages or words to translate</p>
+                    </div>
+                    <div class="factor-card">
+                        <div class="factor-icon">🎯</div>
+                        <h4>Complexity</h4>
+                        <p>Technical terminology and formatting requirements</p>
+                    </div>
+                    <div class="factor-card">
+                        <div class="factor-icon">⏱️</div>
+                        <h4>Timeline</h4>
+                        <p>Standard or express delivery service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="express-section">
+        <div class="express-content">
+            <h2>⚡ Need It Fast? Express Service Available!</h2>
+            <p>We understand that sometimes you need your translation urgently. That's why we offer express delivery for time-sensitive documents.</p>
+            <div class="express-features">
+                <div class="express-feature">
+                    <h4>24-48h</h4>
+                    <p>Express Delivery Available</p>
+                </div>
+                <div class="express-feature">
+                    <h4>100%</h4>
+                    <p>Same Quality Guaranteed</p>
+                </div>
+                <div class="express-feature">
+                    <h4>24/7</h4>
+                    <p>Email Support</p>
+                </div>
+            </div>
+            <a href="contact.html" class="service-cta" style="margin-top: 2rem; background: white; color: #667eea;">Contact for Express Service</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Brueckesl</h3>
+                <p>Certified German-Sinhala Translation Services</p>
+                <p style="margin-top: 1rem; opacity: 0.7;">Sworn by Schleswig-Holstein Higher Regional Court</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Certified Translations</a></li>
+                    <li><a href="services.html">Legal Documents</a></li>
+                    <li><a href="services.html">Medical Translations</a></li>
+                    <li><a href="services.html">Academic Documents</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 Email: info@germansinhalatranslation.com</p>
+                <p>⚡ Response within 24 hours</p>
+                <p>🌍 Serving clients worldwide</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 germansinhalatranslation.com - All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

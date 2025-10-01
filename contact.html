@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Brueckesl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, 80px); }
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 1200px;
+            margin: -4rem auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form-section {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .contact-form-section h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form-section p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .file-upload:hover {
+            background: #f5f7fa;
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102,126,234,0.4);
+        }
+
+        /* Contact Info Section */
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .info-card h3 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item-icon {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-top: 0.2rem;
+        }
+
+        .info-item-content h4 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-email {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        /* Working Hours */
+        .hours-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(102,126,234,0.3);
+        }
+
+        .hours-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Why Contact Section */
+        .why-contact-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .why-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 968px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">Brueckesl</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Get In Touch</h1>
+        <p>Ready to start your translation project? Contact us today for a free quote!</p>
+    </section>
+
+    <section class="contact-container">
+        <!-- Contact Form -->
+        <div class="contact-form-section">
+            <h2>Request a Quote</h2>
+            <p>Fill out the form below and we'll get back to you within 24 hours with a detailed quote.</p>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+49 123 456 7890">
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Service Type *</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="certified">Certified Translation</option>
+                        <option value="legal">Legal Documents</option>
+                        <option value="medical">Medical Translation</option>
+                        <option value="academic">Academic Documents</option>
+                        <option value="technical">Technical Translation</option>
+                        <option value="personal">Personal Documents</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="language">Translation Direction *</label>
+                    <select id="language" name="language" required>
+                        <option value="">Select direction</option>
+                        <option value="de-si">German to Sinhala</option>
+                        <option value="si-de">Sinhala to German</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="urgency">Urgency</label>
+                    <select id="urgency" name="urgency">
+                        <option value="standard">Standard (5-7 days)</option>
+                        <option value="express">Express (2-3 days)</option>
+                        <option value="urgent">Urgent (24-48 hours)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Details</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project, number of pages, special requirements, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Documents (Optional)</label>
+                    <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                        <div class="file-upload-icon">📎</div>
+                        <p><strong>Click to upload</strong> or drag and drop</p>
+                        <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">PDF, JPG, PNG, DOCX (Max 10MB)</p>
+                        <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.docx">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info-section">
+            <div class="info-card">
+                <h3><span class="info-icon">📧</span> Contact Information</h3>
+                
+                <div class="info-item">
+                    <div class="info-item-icon">✉️</div>
+                    <div class="info-item-content">
+                        <h4>Email</h4>
+                        <p><a href="mailto:info@germansinhalatranslation.com" class="contact-email">info@germansinhalatranslation.com</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-item-icon">⚡</div>
+                    <div class="info-item-content">
+                        <h4>Response Time</h4>
+                        <p>Within 24 hours on business days</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-item-icon">🌍</div>
+                    <div class="info-item-content">
+                        <h4>Service Area</h4>
+                        <p>Germany-wide and international clients welcome</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-item-icon">🏛️</div>
+                    <div class="info-item-content">
+                        <h4>Certification</h4>
+                        <p>Sworn by Schleswig-Holstein Higher Regional Court</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hours-card">
+                <h3><span class="info-icon">🕐</span> Email Support Hours</h3>
+                <ul class="hours-list">
+                    <li><span>Monday - Friday</span><span>9:00 - 18:00</span></li>
+                    <li><span>Saturday</span><span>10:00 - 14:00</span></li>
+                    <li><span>Sunday</span><span>Closed</span></li>
+                </ul>
+                <p style="margin-top: 1.5rem; opacity: 0.9; font-size: 0.95rem;">📬 Email inquiries answered within 24 hours, even outside business hours</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-contact-section">
+        <div class="why-container">
+            <h2 class="section-title">What Happens Next?</h2>
+            <p style="color: #666; font-size: 1.2rem; margin-bottom: 2rem;">Here's what you can expect after contacting us</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📨</div>
+                    <h4>Quick Response</h4>
+                    <p>Receive a detailed quote within 24 hours with pricing and timeline</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">💬</div>
+                    <h4>Free Consultation</h4>
+                    <p>Discuss your requirements and get expert advice at no cost</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📋</div>
+                    <h4>Clear Breakdown</h4>
+                    <p>Transparent pricing with no hidden fees or surprises</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h4>Fast Start</h4>
+                    <p>Once approved, we begin your translation project immediately</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Brueckesl</h3>
+                <p>Certified German-Sinhala Translation Services</p>
+                <p style="margin-top: 1rem; opacity: 0.7;">Sworn by Schleswig-Holstein Higher Regional Court</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Certified Translations</a></li>
+                    <li><a href="services.html">Legal Documents</a></li>
+                    <li><a href="services.html">Medical Translations</a></li>
+                    <li><a href="services.html">Academic Documents</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 Email: info@germansinhalatranslation.com</p>
+                <p>⚡ Response within 24 hours</p>
+                <p>🌍 Serving clients worldwide</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 germansinhalatranslation.com - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // File upload display
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const fileUpload = document.querySelector('.file-upload');
+            const files = e.target.files;
+            if (files.length > 0) {
+                let fileNames = Array.from(files).map(f => f.name).join(', ');
+                fileUpload.innerHTML = `
+                    <div class="file-upload-icon">✓</div>
+                    <p><strong>Files Selected:</strong></p>
+                    <p style="font-size: 0.9rem; color: #667eea; margin-top: 0.5rem;">${fileNames}</p>
+                    <p style="font-size: 0.85rem; color: #999; margin-top: 0.5rem; cursor: pointer;">Click to change files</p>
+                `;
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            alert('Thank you for your request! We will get back to you within 24 hours with a detailed quote.');
+            
+            // Reset form
+            this.reset();
+            
+            // Reset file upload display
+            const fileUpload = document.querySelector('.file-upload');
+            fileUpload.innerHTML = `
+                <div class="file-upload-icon">📎</div>
+                <p><strong>Click to upload</strong> or drag and drop</p>
+                <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">PDF, JPG, PNG, DOCX (Max 10MB)</p>
+            `;
+        });
+    </script>
+</body>
+</html>

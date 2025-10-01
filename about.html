@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Brueckesl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: movePattern 15s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section */
+        .about-section {
+            max-width: 1400px;
+            margin: -4rem auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 5px solid #667eea;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .about-illustration {
+            position: relative;
+        }
+
+        .certification-visual {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(102,126,234,0.3);
+        }
+
+        .certification-visual h3 {
+            font-size: 2rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .cert-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-details {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .values-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Qualifications Section */
+        .qualifications-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .qualifications-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .qual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .qual-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-top: 5px solid #667eea;
+        }
+
+        .qual-card h4 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .qual-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .qual-card li {
+            padding: 0.8rem 0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .check-icon {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        /* Why Choose Section */
+        .why-choose-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .why-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .reason-item {
+            display: flex;
+            gap: 1.5rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .reason-item:hover {
+            transform: scale(1.03);
+        }
+
+        .reason-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .reason-content h4 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .reason-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 968px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">Brueckesl</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>About Brueckesl</h1>
+        <p>Your trusted partner for certified German-Sinhala translations</p>
+    </section>
+
+    <section class="about-section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Professional Translation Excellence</h2>
+                <p>Welcome to Brueckesl! We specialize in providing high-quality, certified translations between German and Sinhala languages. As a publicly appointed and sworn translator, I bridge the linguistic gap for individuals, businesses, and institutions.</p>
+                
+                <p>With years of experience and a deep understanding of both German and Sinhala cultures, I ensure that every translation maintains accuracy, cultural nuances, and legal validity.</p>
+
+                <div class="highlight-box">
+                    <p>🎯 Our mission is to provide accurate, reliable, and legally recognized translations that help you achieve your personal and professional goals.</p>
+                </div>
+
+                <p>Whether you need translations for immigration, education, business, or legal purposes, we deliver certified documents that meet all official requirements in Germany.</p>
+            </div>
+
+            <div class="about-illustration">
+                <div class="certification-visual">
+                    <div class="cert-icon">🏛️</div>
+                    <h3>Officially Certified</h3>
+                    <p>Publicly Appointed and Sworn Translator</p>
+                    <div class="cert-details">
+                        <p style="margin: 0;"><strong>Certified by:</strong></p>
+                        <p style="margin: 0.5rem 0 0;">Schleswig-Holstein Higher Regional Court</p>
+                        <p style="margin: 1rem 0 0; font-size: 0.9rem;">(Schleswig-Holsteinisches Oberlandesgericht)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="values-container">
+            <h2 class="section-title">Our Core Values</h2>
+            <p style="text-align: center; color: #666; font-size: 1.2rem; margin-bottom: 1rem;">What guides our work every day</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Accuracy</h3>
+                    <p>Every translation is meticulously reviewed to ensure 100% accuracy and precision in terminology and meaning.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Reliability</h3>
+                    <p>We deliver on time, every time. Your deadlines are our priority, and we never compromise on quality.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h3>Confidentiality</h3>
+                    <p>Your documents are treated with the utmost confidentiality. We adhere to strict data protection standards.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💼</div>
+                    <h3>Professionalism</h3>
+                    <p>From initial contact to final delivery, we maintain the highest standards of professional service.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🌟</div>
+                    <h3>Quality</h3>
+                    <p>Certified translations that meet all legal requirements and exceed your expectations.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Client Focus</h3>
+                    <p>Your satisfaction is our success. We're here to support you through every step of the process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="qualifications-section">
+        <div class="qualifications-container">
+            <h2 class="section-title">Qualifications & Expertise</h2>
+            <p style="text-align: center; color: #666; font-size: 1.2rem; margin-bottom: 1rem;">Certified expertise you can trust</p>
+
+            <div class="qual-grid">
+                <div class="qual-card">
+                    <h4>🎓 Certification</h4>
+                    <ul>
+                        <li><span class="check-icon">✓</span> Publicly appointed translator</li>
+                        <li><span class="check-icon">✓</span> Sworn by Higher Regional Court</li>
+                        <li><span class="check-icon">✓</span> Nationwide recognition in Germany</li>
+                        <li><span class="check-icon">✓</span> Legal authority to certify</li>
+                    </ul>
+                </div>
+
+                <div class="qual-card">
+                    <h4>🌍 Language Expertise</h4>
+                    <ul>
+                        <li><span class="check-icon">✓</span> Native Sinhala speaker</li>
+                        <li><span class="check-icon">✓</span> Fluent German proficiency</li>
+                        <li><span class="check-icon">✓</span> Cultural understanding</li>
+                        <li><span class="check-icon">✓</span> Technical terminology mastery</li>
+                    </ul>
+                </div>
+
+                <div class="qual-card">
+                    <h4>📚 Specializations</h4>
+                    <ul>
+                        <li><span class="check-icon">✓</span> Legal documents</li>
+                        <li><span class="check-icon">✓</span> Medical translations</li>
+                        <li><span class="check-icon">✓</span> Academic certificates</li>
+                        <li><span class="check-icon">✓</span> Technical documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose-section">
+        <div class="why-container">
+            <h2 class="section-title">Why Choose Brueckesl?</h2>
+            <p style="text-align: center; color: #666; font-size: 1.2rem; margin-bottom: 1rem;">What sets us apart from the rest</p>
+
+            <div class="reasons-grid">
+                <div class="reason-item">
+                    <div class="reason-number">1</div>
+                    <div class="reason-content">
+                        <h4>Official Recognition</h4>
+                        <p>All translations are officially certified and recognized by German authorities, courts, and institutions nationwide.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">2</div>
+                    <div class="reason-content">
+                        <h4>Expert Knowledge</h4>
+                        <p>Deep understanding of both languages and cultures ensures accurate, contextually appropriate translations.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">3</div>
+                    <div class="reason-content">
+                        <h4>Fast Turnaround</h4>
+                        <p>Efficient service with express options available for urgent translations without compromising quality.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">4</div>
+                    <div class="reason-content">
+                        <h4>Competitive Pricing</h4>
+                        <p>Transparent, fair pricing based on your specific needs. No hidden fees or unexpected charges.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">5</div>
+                    <div class="reason-content">
+                        <h4>Personal Service</h4>
+                        <p>Direct communication with the translator. We're here to answer your questions and address your concerns.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">6</div>
+                    <div class="reason-content">
+                        <h4>Digital & Physical</h4>
+                        <p>Receive digital copies immediately via email, plus certified originals delivered by post.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Work With Us?</h2>
+            <p>Get in touch today for professional, certified translation services</p>
+            <a href="contact.html" class="cta-btn">Contact Us Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Brueckesl</h3>
+                <p>Certified German-Sinhala Translation Services</p>
+                <p style="margin-top: 1rem; opacity: 0.7;">Sworn by Schleswig-Holstein Higher Regional Court</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Certified Translations</a></li>
+                    <li><a href="services.html">Legal Documents</a></li>
+                    <li><a href="services.html">Medical Translations</a></li>
+                    <li><a href="services.html">Academic Documents</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 Email: info@germansinhalatranslation.com</p>
+                <p>⚡ Response within 24 hours</p>
+                <p>🌍 Serving clients worldwide</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 germansinhalatranslation.com - All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
